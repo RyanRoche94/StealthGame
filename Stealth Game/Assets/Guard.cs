@@ -22,6 +22,7 @@ public class Guard : MonoBehaviour
 	public Transform pathHolder;
 	Transform player;
 	Color originalSpotlightColour;
+	public GameObject question;
 
 	void Start()
 	{
@@ -45,6 +46,7 @@ public class Guard : MonoBehaviour
 		if (CanSeePlayer())
 		{
 			playerVisibleTimer += Time.deltaTime;
+			question.SetActive(true);
 		}
 		else
 		{
