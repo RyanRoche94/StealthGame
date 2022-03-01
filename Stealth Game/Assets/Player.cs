@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public float moveSpeed = 7;
     public float smoothMoveTime = .1f;
     public float turnSpeed = 8;
+    public int itemNum;
 
     float angle;
     float smoothInputMagnitude;
@@ -52,6 +53,12 @@ public class Player : MonoBehaviour
             {
                 OnReachedEndOfLevel();
             }
+        }
+
+        if(hitCollider.tag == "Item")
+        {
+            Destroy(hitCollider.gameObject);
+            itemNum += 1;
         }
     }
 
