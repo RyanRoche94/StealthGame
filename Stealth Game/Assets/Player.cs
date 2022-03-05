@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     public int TotalScore = 0;
     public int newTotalScore = 0;
     public TextMeshProUGUI scoretext;
+    public TextMeshProUGUI Winscoretext;
+    public GameObject WinMenu;
 
     float angle;
     float smoothInputMagnitude;
@@ -53,10 +55,14 @@ public class Player : MonoBehaviour
     {
         if(hitCollider.tag == "Finish")
         {
+            Won();
             Disable();
             if (OnReachedEndOfLevel != null)
             {
+
+               
                 OnReachedEndOfLevel();
+                
             }
         }
 
@@ -84,5 +90,12 @@ public class Player : MonoBehaviour
     void OnDestroy()
     {
         Guard.OnGuardHasSpottedPlayer -= Disable;
+    }
+
+    public void Won()
+    {
+        WinMenu.SetActive(true);
+        Winscoretext.text = ("Score = " + newTotalScore).ToString();
+
     }
 }

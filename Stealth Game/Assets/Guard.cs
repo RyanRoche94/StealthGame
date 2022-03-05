@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Guard : MonoBehaviour
 {
 
 	public static event System.Action OnGuardHasSpottedPlayer;
 
+
+	public GameObject CaughtMenu;
+	
 	public float speed = 5;
 	public float waitTime = .3f;
 	public float turnSpeed = 90;
 	public float timeToSpotPlayer = 1f;
+	public TextMeshProUGUI scoretext;
 
 	public Light spotlight;
 	public float viewDistance;
@@ -61,6 +67,7 @@ public class Guard : MonoBehaviour
 			if (OnGuardHasSpottedPlayer != null)
 			{
 				OnGuardHasSpottedPlayer();
+				GotCaught();
 			}
 		}
 	}
@@ -132,6 +139,25 @@ public class Guard : MonoBehaviour
 
 		Gizmos.color = Color.red;
 		Gizmos.DrawRay(transform.position, transform.forward * viewDistance);
+	}
+
+	
+	public void QuitGame()
+	{
+		Application.Quit();
+	}
+	public void GotCaught()
+	{
+		CaughtMenu.SetActive(true);
+		
+	}
+
+	public void ResumeGame()
+	{
+		
+		CaughtMenu.SetActive(false);
+	
+		SceneManager.LoadScene("SampleScene");
 	}
 
 }
