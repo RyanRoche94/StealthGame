@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class Player : MonoBehaviour
     public float smoothMoveTime = .1f;
     public float turnSpeed = 8;
     public int itemNum;
+    public int PointScore = 1;
+    public int TotalScore = 0;
+    public int newTotalScore = 0;
+    public TextMeshProUGUI scoretext;
 
     float angle;
     float smoothInputMagnitude;
@@ -59,6 +64,9 @@ public class Player : MonoBehaviour
         {
             Destroy(hitCollider.gameObject);
             itemNum+=1;
+            newTotalScore = TotalScore + PointScore;
+            TotalScore = newTotalScore;
+            scoretext.text = ("Score = " + newTotalScore).ToString();
         }
     }
 
