@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
 {
     public event System.Action OnReachedEndOfLevel;
 
+    
+
     public float moveSpeed = 7;
     public float smoothMoveTime = .1f;
     public float turnSpeed = 8;
@@ -30,18 +32,24 @@ public class Player : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
         Guard.OnGuardHasSpottedPlayer += Disable;
+       
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         Vector3 inputDirection = Vector3.zero;
+        
         if (!disabled)
         {
             inputDirection = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical")).normalized;
+            
         }
+     
 
-        
+
+
         float inputMagnitude = inputDirection.magnitude;
         smoothInputMagnitude = Mathf.SmoothDamp(smoothInputMagnitude, inputMagnitude, ref smoothMoveVelocity, smoothMoveTime);
 
@@ -49,7 +57,10 @@ public class Player : MonoBehaviour
         angle = Mathf.LerpAngle(angle, targetAngle, Time.deltaTime * turnSpeed * inputMagnitude);
 
         velocity = transform.forward * moveSpeed * smoothInputMagnitude;
+        
     }
+
+
 
     void OnTriggerEnter(Collider hitCollider)
     {
