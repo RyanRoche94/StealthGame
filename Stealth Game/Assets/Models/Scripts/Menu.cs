@@ -7,6 +7,8 @@ public class Menu : MonoBehaviour
 {
 
     public GameObject PauseMenu;
+    public GameObject Credits;
+    public GameObject Back;
 
     // Start is called before the first frame update
     void Start()
@@ -40,5 +42,15 @@ public class Menu : MonoBehaviour
     {
         PauseMenu.SetActive(false);
         Time.timeScale = 1;
+    }
+    public void Credits1()
+    {
+        Credits.SetActive(true);
+        Back.SetActive(true);
+    }
+    public void GoBack()
+    {
+        Credits.SetActive(false);
+        Back.SetActive(false);
     }
 }
